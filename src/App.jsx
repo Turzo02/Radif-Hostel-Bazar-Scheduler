@@ -8,7 +8,8 @@ import {
   ScheduleTable,
   ErrorMessage
 } from './components';
-import { RefreshCw, Sparkles } from 'lucide-react';
+import { useTheme } from './hooks/useTheme.js';
+import { RefreshCw, Sparkles, Moon, Sun } from 'lucide-react';
 
 export default function App() {
   const {
@@ -29,6 +30,8 @@ export default function App() {
     clearData
   } = useScheduleState();
 
+  const { theme, toggleTheme } = useTheme();
+
   if (!isLoaded) return null;
 
   return (
@@ -36,13 +39,23 @@ export default function App() {
       
       {/* BACKGROUND DECORATION */}
       <div className="fixed inset-0 pointer-events-none z-0">
-        <div className="absolute top-[-10%] left-[-20%] w-[80vw] h-[80vw] bg-emerald-900/20 rounded-full blur-[120px]" />
-        <div className="absolute bottom-[-10%] right-[-20%] w-[80vw] h-[80vw] bg-teal-900/10 rounded-full blur-[100px]" />
+        <div className="absolute top-[-20%] left-[-20%] w-[80vw] h-[80vw] bg-linear-to-br from-(--accent-start)/10 to-(--accent-end)/10 rounded-full blur-[150px]" />
+        <div className="absolute bottom-[-20%] right-[-20%] w-[80vw] h-[80vw] bg-linear-to-br from-(--accent-end)/10 to-(--accent-start)/10 rounded-full blur-[120px]" />
+        <div className="absolute top-[50%] left-[50%] w-[60vw] h-[60vw] bg-linear-to-br from-(--accent-start)/5 to-(--accent-end)/5 rounded-full blur-[100px] -translate-x-1/2 -translate-y-1/2" />
       </div>
 
       <div className="relative z-10 max-w-lg mx-auto md:max-w-5xl px-5 py-8 space-y-8">
         
-        <Header onReset={clearData} />
+        <div className="flex items-center justify-between">
+          <Header onReset={clearData} />
+          <button
+            onClick={toggleTheme}
+            className="btn-secondary p-3"
+            aria-label={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
+          >
+            {theme === 'light' ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
+          </button>
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
           
@@ -50,14 +63,14 @@ export default function App() {
           <div className="md:col-span-5 space-y-6">
             
             {/* Control Card */}
-            <div className="glass-panel rounded-3xl p-6 space-y-8 animate-in slide-in-from-bottom-4 fade-in duration-500">
+            <div className="glass p-6 space-y-8 animate-in slide-in-from-bottom-4 fade-in duration-500">
               <MonthSelector
                 selectedMonth={selectedMonth}
                 selectedYear={selectedYear}
                 onChange={handleMonthChange}
               />
               
-              <div className="w-full h-px bg-white/5" />
+              <div className="w-full h-px bg-(--border-color)" />
               
               <RoomSelector
                 activeRooms={activeRooms}
@@ -65,7 +78,7 @@ export default function App() {
                 onToggleAll={toggleAllRooms}
               />
               
-              <div className="w-full h-px bg-white/5" />
+              <div className="w-full h-px bg-(--border-color)" />
               
               <DateSelector
                 generatedDates={generatedDates}
@@ -78,13 +91,10 @@ export default function App() {
             {/* Main Action Button */}
             <button
               onClick={generateBalancedSchedule}
-              className="w-full relative overflow-hidden group bg-gradient-to-r from-emerald-500 to-teal-500 rounded-2xl p-4 shadow-lg shadow-emerald-900/50 active:scale-[0.98] transition-transform duration-200"
+              className="w-full btn-primary flex items-center justify-center gap-2 text-lg"
             >
-              <div className="absolute inset-0 bg-white/20 translate-y-full group-active:translate-y-0 transition-transform duration-300" />
-              <div className="flex items-center justify-center gap-2 relative z-10">
-                <RefreshCw className="w-5 h-5 text-white animate-[spin_8s_linear_infinite]" />
-                <span className="font-bold text-white text-lg tracking-wide">Generate Schedule</span>
-              </div>
+              <RefreshCw className="w-5 h-5 animate-[spin_8s_linear_infinite]" />
+              <span>Generate Schedule</span>
             </button>
 
             <ErrorMessage message={error} />

@@ -1,30 +1,58 @@
 import React from 'react';
-import { Users, RotateCcw } from 'lucide-react';
+import { Users, RotateCcw, Sparkles } from 'lucide-react';
 
 export function Header({ onReset }) {
   return (
-    <header className="flex items-center justify-between">
-      <div className="flex items-center gap-3">
-        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center shadow-lg shadow-emerald-900/50">
-          <Users className="w-5 h-5 text-white" />
+    <header className="relative">
+      {/* Decorative Floating Elements */}
+      <div className="absolute -top-4 -left-4 w-8 h-8 bg-linear-to-br from-(--accent-start) to-(--accent-end) rounded-full opacity-20 blur-xl floating" />
+      <div className="absolute -top-2 -right-2 w-6 h-6 bg-linear-to-br from-(--accent-end) to-(--accent-start) rounded-full opacity-30 blur-lg floating" style={{ animationDelay: '1s' }} />
+      
+      <div className="flex items-center justify-between relative z-10">
+        {/* Logo & Title Section */}
+        <div className="flex items-center gap-4 group">
+          {/* Premium Logo Container */}
+          <div className="relative">
+            <div className="w-14 h-14 rounded-2xl bg-linear-to-br from-(--accent-start) to-(--accent-end) flex items-center justify-center shadow-(--accent-glow) transition-all duration-300 group-hover:shadow-xl group-hover:scale-105">
+              <Users className="w-7 h-7 text-black" />
+            </div>
+            {/* Glow Effect */}
+            <div className="absolute inset-0 rounded-2xl bg-linear-to-br from-(--accent-start) to-(--accent-end) opacity-0 blur-xl transition-opacity duration-300 group-hover:opacity-30" />
+            {/* Sparkle Icon */}
+            <Sparkles className="absolute -top-1 -right-1 w-4 h-4 text-(--accent-start) animate-pulse" />
+          </div>
+
+          {/* Text Content */}
+          <div className="space-y-1">
+            <h1 className="text-2xl font-bold linear-text leading-tight tracking-tight">
+              Radif Hostel
+            </h1>
+            <div className="flex items-center gap-2">
+              <div className="h-px w-8 bg-(--accent-start)/50" />
+              <p className="text-xs text-(--text-secondary) font-medium uppercase tracking-widest">
+                Rotation Manager
+              </p>
+              <div className="h-px w-8 bg-(--accent-start)/50" />
+            </div>
+          </div>
         </div>
-        <div>
-          <h1 className="text-xl font-bold text-white leading-tight tracking-tight">
-            Radif Hostel
-          </h1>
-          <p className="text-xs text-emerald-400/80 font-medium uppercase tracking-wider">
-            Rotation Manager
-          </p>
+
+        {/* Reset Button */}
+        <div className="relative group">
+          <button
+            onClick={onReset}
+            className="glass p-3 text-(--text-secondary) hover:text-(--accent-start) transition-all duration-300 group/btn"
+            aria-label="Reset all data"
+          >
+            <RotateCcw className="w-5 h-5 transition-transform duration-300 group-hover/btn:rotate-180" />
+          </button>
+          
+          {/* Tooltip */}
+          <div className="absolute right-0 top-full mt-2 px-3 py-1 glass text-xs text-(--text-secondary) opacity-0 pointer-events-none transition-opacity duration-300 group-hover:opacity-100 whitespace-nowrap">
+            Reset All Data
+          </div>
         </div>
       </div>
-
-      <button
-        onClick={onReset}
-        className="glass-interactive rounded-full p-2.5 text-emerald-400 active:text-red-400 active:bg-red-500/10 transition-colors"
-        aria-label="Reset"
-      >
-        <RotateCcw className="w-5 h-5" />
-      </button>
     </header>
   );
 }
