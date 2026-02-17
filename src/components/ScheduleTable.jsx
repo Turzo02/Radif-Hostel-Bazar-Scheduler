@@ -29,7 +29,7 @@ export function ScheduleTable({ schedule, selectedMonth, selectedYear }) {
   }
 
   return (
-    <div className="premium-card overflow-hidden flex flex-col h-full min-h-125 animate-in slide-in-from-bottom-8 duration-700">
+    <div className="premium-card overflow-hidden flex flex-col h-full min-h-125 animate-in slide-in-from-bottom-8 duration-700 p-4">
       
       {/* Header */}
       <div className="p-6 border-b border-(--border-color) glass sticky top-0 z-10 flex justify-between items-center">
@@ -52,7 +52,7 @@ export function ScheduleTable({ schedule, selectedMonth, selectedYear }) {
       </div>
 
       {/* Schedule List */}
-      <div className="flex-1 overflow-auto p-4 space-y-3">
+      <div className="flex-1 overflow-auto py-4 space-y-3">
         {schedule.map((row, idx) => {
           const dateObj = new Date(row.date);
           const dayName = dateObj.toLocaleDateString('en-US', { weekday: 'short' });

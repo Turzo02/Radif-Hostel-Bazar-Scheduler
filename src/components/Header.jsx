@@ -24,7 +24,7 @@ export function Header({ onReset }) {
 
           {/* Text Content */}
           <div className="space-y-1">
-            <h1 className="text-2xl font-bold linear-text leading-tight tracking-tight">
+            <h1 className="text-2xl font-bold linear-text leading-tight tracking-tight text-center">
               Radif Hostel
             </h1>
             <div className="flex items-center gap-2">
