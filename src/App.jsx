@@ -8,7 +8,7 @@ import {
   ScheduleTable,
   ErrorMessage
 } from './components';
-import { useTheme } from './hooks/useTheme.js';
+
 import { RefreshCw, Sparkles, Moon, Sun } from 'lucide-react';
 
 export default function App() {
@@ -30,7 +30,7 @@ export default function App() {
     clearData
   } = useScheduleState();
 
-  const { theme, toggleTheme } = useTheme();
+
 
   if (!isLoaded) return null;
 
@@ -46,15 +46,8 @@ export default function App() {
 
       <div className="relative z-10 max-w-lg mx-auto md:max-w-5xl px-5 py-8 space-y-8">
         
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-center">
           <Header onReset={clearData} />
-          <button
-            onClick={toggleTheme}
-            className="btn-secondary p-3"
-            aria-label={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
-          >
-            {theme === 'light' ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
-          </button>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
