@@ -52,7 +52,7 @@ export function ScheduleTable({ schedule, selectedMonth, selectedYear }) {
       </div>
 
       {/* Schedule List */}
-      <div className="flex-1 overflow-auto py-4 space-y-3">
+      <div className="flex-1 overflow-auto py-4 px-2 space-y-3">
         {schedule.map((row, idx) => {
           const dateObj = new Date(row.date);
           const dayName = dateObj.toLocaleDateString('en-US', { weekday: 'short' });
