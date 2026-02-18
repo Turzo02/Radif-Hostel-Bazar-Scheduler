@@ -57,10 +57,6 @@
         @apply transition-colors duration-200;
     }
 
-    html {
-        scroll-behavior: smooth;
-    }
-
     body {
         font-family: 'Hind Siliguri', sans-serif;
         @apply antialiased;
