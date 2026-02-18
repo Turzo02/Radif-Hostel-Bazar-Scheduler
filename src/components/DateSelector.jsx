@@ -30,7 +30,11 @@ export function DateSelector({ generatedDates, activeDates, onToggle, onToggleAl
 
       {/* Calendar Grid */}
       <div className="premium-card p-4">
-        <div className="grid grid-cols-4 sm:grid-cols-5 gap-3 max-h-60 overflow-y-auto no-scrollbar p-2">
+        <div 
+          className="grid grid-cols-4 sm:grid-cols-5 gap-3 max-h-60 overflow-y-auto no-scrollbar p-2"
+          data-lenis="true"
+          data-lenis-prevent="false"
+        >
           {generatedDates.map((dateStr, index) => {
             const date = new Date(dateStr);
             const isActive = activeDates.includes(dateStr);

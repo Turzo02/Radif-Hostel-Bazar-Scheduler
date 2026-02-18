@@ -30,7 +30,11 @@ export function RoomSelector({ activeRooms, onToggle, onToggleAll }) {
       </div>
 
       {/* Room Grid */}
-      <div className="grid grid-cols-4 gap-3 max-h-50 overflow-y-auto no-scrollbar py-2 pr-2">
+      <div 
+        className="grid grid-cols-4 gap-3 max-h-50 overflow-y-auto no-scrollbar py-2 pr-2"
+        data-lenis="true"
+        data-lenis-prevent="false"
+      >
         {DEFAULT_ROOMS.map((room, index) => {
           const isActive = activeRooms.includes(room);
           return (

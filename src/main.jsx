@@ -7,7 +7,7 @@ import Lenis from '@studio-freight/lenis'
 
 // Initialize Lenis smooth scrolling
 const lenis = new Lenis({
-  duration: 2.25,           // Longer duration for smoother feel
+  duration: 1.8,           // Longer duration for smoother feel
   easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Smooth easing curve
   direction: 'vertical',    // Vertical scrolling
   gestureDirection: 'vertical',
@@ -16,9 +16,11 @@ const lenis = new Lenis({
   smoothTouch: true,       // Enable touch smooth for mobile
   touchMultiplier: 1.5,    // Optimized touch sensitivity
   infinite: false,         // No infinite scrolling
-  wheelMultiplier: 1.2,    // Reduced wheel sensitivity for smoother scrolling
+  wheelMultiplier: 0.4,    // Reduced wheel sensitivity for smoother scrolling
   normalizeWheel: true,    // Normalize wheel events across browsers
   smoothWheel: true,       // Enable smooth wheel scrolling
+  wrapper: document.body,  // Ensure it works with all scrollable elements
+  content: document.documentElement, // Apply to entire document
 })
 
 // Connect Lenis to requestAnimationFrame with enhanced performance
